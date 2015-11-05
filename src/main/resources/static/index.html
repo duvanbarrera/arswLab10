@@ -1,0 +1,22 @@
+
+
+<!DOCTYPE html>
+<html ng-app="app">
+    <head >
+        <script src="js/angular.min.js"></script>
+        <script src="js/app/controller/blogctrl.js"></script>
+
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <title>Blog</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body ng-controller="blogCtrl">
+        <div>
+            <h1>{{title}}</h1><br>
+            <ol>
+                Titulo:<input ng-model="title">
+            </ol>
+        </div>
+    </body>
+</html>
