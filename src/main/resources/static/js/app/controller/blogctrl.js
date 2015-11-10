@@ -9,7 +9,7 @@ app.controller("blogCtrl", function($scope,$log,$http) {
     $scope.loadData = function() {
         var configList = {
                 method: "GET",
-                url: "http://10.2.67.81:8080/blogs"
+                url: "http://192.168.1.4:8080/blogs"
         };
 
         var response=$http(configList);
@@ -28,11 +28,31 @@ app.controller("blogCtrl", function($scope,$log,$http) {
         $log.debug($scope.entry);
         $http({
             method  : 'POST',
-            url     : 'http://10.2.67.81:8080/blog',
+            url     : 'http://192.168.1.4:8080/blog',
             data    : $scope.entry
         }).success(function(data) {
             console.log(data);
             $scope.loadData();
         });
+    };
+    
+    $scope.deleteData = function(ind) {
+        alert("entro");
+        alert(ind);
+        alert($scope.entries.length);
+       
+        $log.debug($scope.entries[ind]);
+        $http({
+            method  : 'DELETE',
+            url     : "http://192.168.1.4:8080/blog",
+           data    : "{"+ind+"}"
+            //headers: {"Content-Type": "application/json;charset=utf-8"}
+        }).success(function() {
+            //console.log(data);
+            $scope.loadData();
+        });
+         //alert($scope.entries[ind].title);
+         //var response=$http(configList);
+
     }; 
 });

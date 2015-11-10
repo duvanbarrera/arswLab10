@@ -1,0 +1,4 @@
+edu\eci\arsw\model\Entry.class
+edu\eci\arsw\SimpleCORSFilter.class
+edu\eci\arsw\controller\EntryController.class
+edu\eci\arsw\Application.class
