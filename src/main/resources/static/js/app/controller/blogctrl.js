@@ -27,10 +27,25 @@ app.controller("blogCtrl", function($scope,$log,$http) {
     
     $scope.processForm = function() {
         $log.debug($scope.entry);
+       
         $http({
             method  : 'POST',
             url     : 'http://localhost:8080/blog',
             data    : $scope.entry
+        }).success(function(data) {
+            console.log(data);
+            $scope.loadData();
+        });
+    };
+
+    $scope.editData = function(ind) {
+        alert(ind);
+         alert($scope.entries[ind].title);
+        $log.debug($scope.entries[ind]);
+        $http({
+            method  : 'PUT',
+            url     : 'http://localhost:8080/blog',
+            data    :  {"int":ind, "Entry":  $Scope.entries[ind]}
         }).success(function(data) {
             console.log(data);
             $scope.loadData();
@@ -43,7 +58,7 @@ app.controller("blogCtrl", function($scope,$log,$http) {
             method  : 'DELETE',
             url     : "http://localhost:8080/blog",
             //params: {ind : "'"+ind+"'"}
-           data    : ind ,
+           data    :  ind, 
           headers: {"Content-Type": "application/json;charset=utf-8"}
         }).success(function() {
             //alert("marica hp");

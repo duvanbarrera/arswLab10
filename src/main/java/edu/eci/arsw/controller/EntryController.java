@@ -42,5 +42,13 @@ public class EntryController {
         //entries.add(ind);
         
     }
+    @RequestMapping(method = RequestMethod.PUT,value = "/blog")
+    public  ResponseEntity<?>  putEntry(@RequestBody int ind,Entry p) {
+         System.out.println("entro PUTTTTTTTTTTO"+"    "+ind+"    "+p.getTitle()+"     "+p.getContent());
+        //entries.add(p);
+        entries.get(ind);
+
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
 
 }
