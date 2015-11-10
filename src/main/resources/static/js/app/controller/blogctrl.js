@@ -3,7 +3,9 @@ var app = angular.module("app",[]);
 app.controller("blogCtrl", function($scope,$log,$http) {
     $scope.entry = {title : "Title",
                     content : "Content"};
-    
+
+    $scope.entryUpdate = {title : "Title",
+                    content : "Content"};
     $scope.entries = [];
     $log.debug('se creo el $scope');
 
@@ -39,18 +41,26 @@ app.controller("blogCtrl", function($scope,$log,$http) {
     };
 
     $scope.editData = function(ind) {
-        alert(ind);
-         alert($scope.entries[ind].title);
-        $log.debug($scope.entries[ind]);
-        $http({
-            method  : 'PUT',
-            url     : 'http://localhost:8080/blog',
-            data    :  {"int":ind, "Entry":  $Scope.entries[ind]}
-        }).success(function(data) {
-            console.log(data);
-            $scope.loadData();
-        });
-    };
+
+        $scope.entryUpdate.title=document.getElementsByName("titleU")[ind].value;
+        $scope.entryUpdate.content=document.getElementsByName("contentU")[ind].value;
+        var configList = {
+                method  : 'PUT',
+                url     : 'http://localhost:8080/blog/'+ind,
+                data    :  $scope.entryUpdate
+        };
+
+        var response=$http(configList);
+
+        response.success(function(data, status, headers, config) {
+            $scope.entries = data;
+            });
+
+        response.error(function(data, status, headers, config) {
+            alert("Ha fallado la petición. Estado HTTP:"+status);
+            });
+
+    };  
     
     $scope.deleteData = function(ind) {
         $log.debug($scope.entries[ind]);

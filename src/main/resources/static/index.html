@@ -21,6 +21,7 @@
           </form>
         </div>
         <table class="table">
+          
           <tr>
             <th>Título </th>
             <th>Contenido</th>
@@ -28,8 +29,8 @@
             <th>Eliminar </th>
           </tr>
           <tr ng-repeat="e in entries">
-            <td> {{ e.title }} <br><input id='titleU' name='titleU' type="text" ng-value= "e.title"></td>
-            <td> {{ e.content }} <br><input id='contentU' name='contentU' type="text" ng-value= "e.content"></td>
+            <td> {{ e.title }} <br><input id='titleU'ng- name='titleU' type="text" ng-value= "e.title"></td>
+            <td> {{ e.content }} <br><input id='titleU' name='contentU' type="text" ng-value= "e.content"></td>
             <td>
               <button type="button" class="btn btn-warning"  ng-click="editData($index)">
                 Editar

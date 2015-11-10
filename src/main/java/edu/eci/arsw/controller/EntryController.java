@@ -3,6 +3,7 @@ package edu.eci.arsw.controller;
 import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,13 +43,14 @@ public class EntryController {
         //entries.add(ind);
         
     }
-    @RequestMapping(method = RequestMethod.PUT,value = "/blog")
-    public  ResponseEntity<?>  putEntry(@RequestBody int ind,Entry p) {
+    @RequestMapping(method = RequestMethod.PUT,value = "/blog/{ind}")
+    public  List<Entry>  putEntry(@PathVariable int ind, @RequestBody Entry p) {
          System.out.println("entro PUTTTTTTTTTTO"+"    "+ind+"    "+p.getTitle()+"     "+p.getContent());
         //entries.add(p);
-        entries.get(ind);
-
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        entries.set(ind,p);
+        //entries.get(ind).setTitle(p.getTitle());
+        //entries.get(ind).setContent(p.getContent());
+        return entries;
     }
 
 }
