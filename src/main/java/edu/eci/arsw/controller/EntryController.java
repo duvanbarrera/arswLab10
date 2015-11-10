@@ -28,18 +28,19 @@ public class EntryController {
 
     @RequestMapping(method = RequestMethod.POST,value = "/blog")
     public  ResponseEntity<?>  postEntry(@RequestBody Entry p) {
+         System.out.println("entro porfin POSTTTTTTTTTT");
         entries.add(p);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
+   
+
     @RequestMapping(method = RequestMethod.DELETE,value = "/blog")
-        //System.out.println("entro");
-       // return entries;
-     public  ResponseEntity<?>  deleteEntry(@RequestBody int ind) {
-        System.out.println(ind);
+     public void  deleteEntry(@RequestBody int ind) {
+        System.out.println("entro delete"+ind);
         entries.remove(ind);
         //entries.add(ind);
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        
     }
 
 }
