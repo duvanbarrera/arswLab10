@@ -29,7 +29,6 @@ public class EntryController {
 
     @RequestMapping(method = RequestMethod.POST,value = "/blog")
     public  ResponseEntity<?>  postEntry(@RequestBody Entry p) {
-         System.out.println("entro porfin POSTTTTTTTTTT");
         entries.add(p);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
@@ -38,15 +37,14 @@ public class EntryController {
 
     @RequestMapping(method = RequestMethod.DELETE,value = "/blog")
      public void  deleteEntry(@RequestBody int ind) {
-        System.out.println("entro delete"+ind);
+      
         entries.remove(ind);
-        //entries.add(ind);
+       
         
     }
     @RequestMapping(method = RequestMethod.PUT,value = "/blog/{ind}")
     public  List<Entry>  putEntry(@PathVariable int ind, @RequestBody Entry p) {
-         System.out.println("entro PUTTTTTTTTTTO"+"    "+ind+"    "+p.getTitle()+"     "+p.getContent());
-        //entries.add(p);
+        
         entries.set(ind,p);
         //entries.get(ind).setTitle(p.getTitle());
         //entries.get(ind).setContent(p.getContent());
